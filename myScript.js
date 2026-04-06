@@ -120,10 +120,10 @@ $(document).ready(() => {
                     <h5>Price: $${el.price}</h5>
                     
                     <button id="productButton${index}" 
-                            type="button" 
-                            class="btn btn-primary btn-info-click" 
-                            data-id="${el.id}"
-                            data-micromodal-trigger="modal-${index}">
+                        type="button" 
+                        class="btn btn-primary btn-info-click" 
+                        data-id="${el.id}"
+                        data-micromodal-trigger="modal-${index}">
                             
                         More Info
                     </button>
@@ -131,9 +131,24 @@ $(document).ready(() => {
                     <div class="modal a micromodal-slide" id="modal-${index}" aria-hidden="true">
                     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
                         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+
                             <button class="modal__close" aria-label="Close modal" data-micromodal-close>X</button>
-                            <h2 class="modal__title" id="modal-1-title">Mike's Modal</h2>
-                        <p class="modal__content">Here is some text that will appear after the modal has been opened.</p>
+                            <img class="gameLarge" src="./myImages/${el.image_large}">
+                            <h3>${el.title}</h3>
+                            <h5>Price: $${el.price}</h5>
+                            <p class="descriptionStyle">${el.description}</p>
+
+                            <button id="addCart${index}" 
+                                type="button" 
+                                class="btn btn-primary btn-info-click addCart" 
+                                data-id="${el.id}"
+                                data-micromodal-trigger="modal-${index}">
+                                
+                                Add to cart
+                            </button>
+                            
+                            
+
                         </div>
                     </div>
                     </div>
@@ -146,6 +161,9 @@ $(document).ready(() => {
         `);
         });
 
+
+
+        // Modal initiate
 
         MicroModal.init({
             onClose: (modal) => console.log(`${modal.id} closed`),
@@ -221,33 +239,13 @@ $(document).ready(() => {
     })
 
 
-    // Test Func
-    const testFunc = () => {
-        console.log("I am the lizard queen!");
-        
-    }
+   
 
 
 })
 
 
 
-////////////////////////////////////////////////////////////////////////////////
-
-// Modal //
-
-// This code is from the developer's code pen demo
-// document.addEventListener('DOMContentLoaded', () => {
-//     MicroModal.init({
-//         onClose: () => { console.log('close') }
-//     })
-
-//     MicroModal.show('modal-1')
-//     MicroModal.close('modal-1')
-
-// });
-
-/////////////////////////////////////////////////////////////
 
 
 
