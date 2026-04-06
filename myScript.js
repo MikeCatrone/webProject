@@ -16,6 +16,10 @@ $(document).ready(() => {
         });
         
     }
+
+
+
+    
    
     
 
@@ -38,7 +42,8 @@ $(document).ready(() => {
     
 
 
-    //Initial Home Page Load
+    // -- Initial Home Page Load -- //
+
     $(() => {
 
         console.log("Initial Load");
@@ -49,10 +54,10 @@ $(document).ready(() => {
          axios.get('https://codethesolution.com/nscc/project2700-mike.php')
         .then(response => {
 
-        console.log('Data fetched successfully:', response.data);
+        // console.log('Data fetched successfully:', response.data);
 
-        console.log(response.data.length);
 
+        
 
 
         //Adds skeleton
@@ -74,24 +79,89 @@ $(document).ready(() => {
         `);
 
 
+   
 
 
+        // Old data
 
         // Loop adds product blocks
-        for(el of response.data) {
-            console.log(el);
+        // for(el of response.data) {
 
-            $("#insertProduct").append(`
+        //     console.log(el);
+
+        //     $("#insertProduct").append(`
             
-            <div class="col-md-4">
-                        <div class="p-3 border bg-light text-center">
-                            <img class="gameCover" src="./myImages/${el.image_main}">
-                        </div>
-            </div>
+        //     <div class="col-md-4">
+        //                 <div class="p-3 border bg-light text-center">
+        //                     <img class="gameCover" src="./myImages/${el.image_main}">
+        //                     <h3>${el.title}</h3>
+        //                     <h5>Price: $${el.price}</h5>
+        //                     <button id="productButton${el}" type="button" class="btn btn-primary">More Info</button>
+                            
+        //                 </div>
+
+        //     </div>
                         
-            `);
+        //     `);
  
-        }
+        // }
+
+
+
+
+        // Updated data
+        $.each(response.data, (index, el) => {
+
+        $("#insertProduct").append(`
+            <div class="col-md-4">
+                <div class="p-3 border bg-light text-center">
+                    <img class="gameCover" src="./myImages/${el.image_main}">
+                    <h3>${el.title}</h3>
+                    <h5>Price: $${el.price}</h5>
+                    
+                    <button id="productButton${index}" 
+                            type="button" 
+                            class="btn btn-primary btn-info-click" 
+                            data-id="${el.id}"
+                            data-micromodal-trigger="modal-${index}">
+                            
+                        More Info
+                    </button>
+
+                    <div class="modal a micromodal-slide" id="modal-${index}" aria-hidden="true">
+                    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                            <button class="modal__close" aria-label="Close modal" data-micromodal-close>X</button>
+                            <h2 class="modal__title" id="modal-1-title">Mike's Modal</h2>
+                        <p class="modal__content">Here is some text that will appear after the modal has been opened.</p>
+                        </div>
+                    </div>
+                    </div>
+
+                  
+
+
+                </div>
+            </div>
+        `);
+        });
+
+
+        MicroModal.init({
+            onClose: (modal) => console.log(`${modal.id} closed`),
+            openTrigger: 'data-micromodal-trigger', 
+            closeTrigger: 'data-micromodal-close',
+            disableScroll: true
+        });
+
+        
+
+
+        $("#productButton1").on('click', () => {
+
+            console.log("Button Pressed!!");
+            
+        })
         
 
         
@@ -111,6 +181,7 @@ $(document).ready(() => {
         
         // Activates slider
         initSlider();
+
 
 
     })
@@ -148,6 +219,13 @@ $(document).ready(() => {
         `)
 
     })
+
+
+    // Test Func
+    const testFunc = () => {
+        console.log("I am the lizard queen!");
+        
+    }
 
 
 })
