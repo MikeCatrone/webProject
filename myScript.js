@@ -54,7 +54,7 @@ $(document).ready(() => {
          axios.get('https://codethesolution.com/nscc/project2700-mike.php')
         .then(response => {
 
-        // console.log('Data fetched successfully:', response.data);
+        console.log('Data fetched successfully:', response.data);
 
 
         
@@ -146,6 +146,34 @@ $(document).ready(() => {
                                 
                                 Add to cart
                             </button>
+
+                            <div>
+
+                                <a href="./myImages/${el.image_gallery_1}" data-fancybox data-caption="Single image">
+                                    <img class="popup" src="./myImages/${el.image_gallery_1}" alt="Single image" />
+                                </a>
+
+                                <a href="./myImages/${el.image_gallery_2}" data-fancybox="gallery" data-caption="Caption #1">
+                                    <img class="popup" src="./myImages/${el.image_gallery_2}" alt="Gallery image 1" />
+                                </a>
+
+                                <a href="./myImages/${el.image_gallery_3}" data-fancybox="gallery" data-caption="Caption #2">
+                                    <img class="popup" src="./myImages/${el.image_gallery_3}" alt="Gallery image 2" />
+                                </a>
+
+                                <a href="./myImages/${el.image_gallery_4}" data-fancybox="gallery" data-caption="Caption #2">
+                                    <img class="popup" src="./myImages/${el.image_gallery_4}" alt="Gallery image 2" />
+                                </a>
+
+                                <a href="./myImages/${el.image_gallery_5}" data-fancybox="gallery" data-caption="Caption #2">
+                                    <img class="popup" src="./myImages/${el.image_gallery_5}" alt="Gallery image 2" />
+                                </a>
+
+                                <a href="./myImages/${el.image_gallery_6}" data-fancybox="gallery" data-caption="Caption #2">
+                                    <img class="popup" src="./myImages/${el.image_gallery_6}" alt="Gallery image 2" />
+                                </a>
+
+                            </div>
                             
                             
 
