@@ -35,67 +35,80 @@ $(document).ready(() => {
     `;
 
 
-    // Page content html
-    let pageContent = `
-        <div id = "pageContent">
-            
-            <h2>Games For Sale</h2>
-
-            <div class="container mt-5">
-                <div class="row g-4">
-                    
-                    <div class="col-md-4">
-                        <div class="p-3 border bg-light text-center">
-                            <img src="./myImages/01.jpg">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="p-3 border bg-light text-center">
-                            <img src="./myImages/01.jpg">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="p-3 border bg-light text-center">
-                            <img src="./myImages/01.jpg">
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="p-3 border bg-light text-center">
-                            <img src="./myImages/01.jpg">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="p-3 border bg-light text-center">
-                            <img src="./myImages/01.jpg">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="p-3 border bg-light text-center">
-                            <img src="./myImages/01.jpg">
-                        </div>
-                    </div>
-                    
-                </div>
-
-        </div>
-
-    `;
-
+    
 
 
     //Initial Home Page Load
     $(() => {
 
         console.log("Initial Load");
-        
-        $("#myMain").append(theSlider);
-        $("#myMain").append(pageContent);
 
+
+        // Axios Call
+
+         axios.get('https://codethesolution.com/nscc/project2700-mike.php')
+        .then(response => {
+
+        console.log('Data fetched successfully:', response.data);
+
+        console.log(response.data.length);
+
+
+
+        //Adds skeleton
+        $("#myMain").append(`
+
+            <div id = "pageContent">
+            
+            <h2>Games For Sale</h2>
+
+            <div class="container mt-5">
+                <div id="insertProduct" class="row g-4">
+                    
+
+                </div>
+
+            </div>
+            
+            
+        `);
+
+
+
+
+
+        // Loop adds product blocks
+        for(el of response.data) {
+            console.log(el);
+
+            $("#insertProduct").append(`
+            
+            <div class="col-md-4">
+                        <div class="p-3 border bg-light text-center">
+                            <img class="gameCover" src="./myImages/${el.image_main}">
+                        </div>
+            </div>
+                        
+            `);
+ 
+        }
+        
+
+        
+        }) // Error Catching //
+        .catch(error => {
+
+        // Handle any errors that occurred during the request
+        console.error('Error fetching data:', error);
+
+        });
+        
+
+
+        // Adds Slider
+        $("#myMain").append(theSlider);
+        
+        
         // Activates slider
         initSlider();
 
