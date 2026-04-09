@@ -63,7 +63,7 @@ $(document).ready(() => {
         //Adds skeleton
         $("#myMain").append(`
 
-            <div id = "pageContent">
+            <div id="pageContent">
             
             <h2>Games For Sale</h2>
 
@@ -81,35 +81,7 @@ $(document).ready(() => {
 
    
 
-
-        // Old data
-
-        // Loop adds product blocks
-        // for(el of response.data) {
-
-        //     console.log(el);
-
-        //     $("#insertProduct").append(`
-            
-        //     <div class="col-md-4">
-        //                 <div class="p-3 border bg-light text-center">
-        //                     <img class="gameCover" src="./myImages/${el.image_main}">
-        //                     <h3>${el.title}</h3>
-        //                     <h5>Price: $${el.price}</h5>
-        //                     <button id="productButton${el}" type="button" class="btn btn-primary">More Info</button>
-                            
-        //                 </div>
-
-        //     </div>
-                        
-        //     `);
- 
-        // }
-
-
-
-
-        // Updated data
+        // data
         $.each(response.data, (index, el) => {
 
         $("#insertProduct").append(`
@@ -182,12 +154,43 @@ $(document).ready(() => {
                     </div>
 
                   
-
-
                 </div>
             </div>
         `);
         });
+
+
+        let theFooter = `
+            <footer class="footer-retro mt-5 py-5">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+                            <h4 class="retro-logo">Mike's Retro Chest</h4>
+                            <p class="mb-0">Your one-stop shop for legendary PlayStation classics and hidden gems.</p>
+                        </div>
+                        
+                        <div class="col-md-6 text-center text-md-end">
+                            <h5 class="text-uppercase small fw-bold">Stay Connected</h5>
+                            <p class="small">Follow us for restock alerts & retro news!</p>
+                            <div class="social-icons">
+                                <span class="badge bg-primary px-3 py-2">Facebook</span>
+                                <span class="badge bg-info text-dark px-3 py-2">Twitter</span>
+                                <span class="badge bg-danger px-3 py-2">Instagram</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr class="retro-hr">
+                    
+                    <div class="text-center">
+                        <p class="copyright-text mb-0">&copy; 2026 Mike's Retro Chest. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        `;
+
+        // Append this at the end of your initial load function
+        $("#myMain").append(theFooter);
 
 
 
@@ -203,10 +206,34 @@ $(document).ready(() => {
         
 
 
-        $("#productButton1").on('click', () => {
+        $("#addCart0").on('click', () => {
+            alert("Silent Hill was added to the cart");
+         
+        })
 
-            console.log("Button Pressed!!");
-            
+        $("#addCart1").on('click', () => {
+            alert("Final Fantasy VII was added to the cart");
+         
+        })
+
+        $("#addCart2").on('click', () => {
+            alert("Chrono Cross was added to the cart");
+         
+        })
+
+        $("#addCart3").on('click', () => {
+            alert("Metal Gear Solid was added to the cart");
+         
+        })
+
+        $("#addCart4").on('click', () => {
+            alert("Tomb Raider was added to the cart");
+         
+        })
+
+        $("#addCart5").on('click', () => {
+            alert("Crash Bandicoot was added to the cart");
+         
         })
         
 
@@ -239,6 +266,7 @@ $(document).ready(() => {
 
         $("#homeBanner").css("display", "block");
         $("#pageContent").html(pageContent);
+        window.location.reload();
         
     })
 
@@ -249,7 +277,48 @@ $(document).ready(() => {
 
         $("#homeBanner").css("display", "none");
         $("#pageContent").html(`
-            <h1>About Us</h1>
+
+            <div id="aboutHeading">
+                
+                <img src="./myImages/game-controller.png">
+                <h1>About Our Shop</h1>
+
+                <div class="container">
+                    <div class="row gx-5 gy-5">
+
+                        <div class="col-md-6">
+                            <div id="aboutBox1" class="p-4 h-100"> 
+                                <p>
+                                    We pride ourselves on delivering the classics that people grew up with, at a 
+                                    price that wont break your budget. For nearly 10 years we've been devoted to 
+                                    stocking our shop with a wide arange of games of all genres. 
+                                    There's something for everyone at Mike's Retro Chest
+                                </p>
+
+                                <img src="./myImages/star.png">
+
+                                <p>
+                                    Ask us about our trade in policies, as we are always looking for retro consoles to
+                                    fill our inventory. It's because of our loyal customers that we are able to keep our doors
+                                    open. We can also custom order anything that you may be needing.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div id="aboutBox2" class="h-100">
+                                <img id="gameShopStyle" src="./myImages/gameShop.png" class="img-fluid">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                
+            
+            </div>
+            
         `)
 
     })
@@ -261,7 +330,7 @@ $(document).ready(() => {
 
         $("#homeBanner").css("display", "none");
         $("#pageContent").html(`
-            <h1>Contact</h1>
+            <h1 id="contactHeading">Contact</h1>
         `)
 
     })

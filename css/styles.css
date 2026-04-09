@@ -1,6 +1,16 @@
 @charset "UTF-8";
 
 
+@font-face {
+  font-family: 'Lora';
+  src: url('Lora-Regular') format('ttf'),
+       url('fonts/myfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 
 .slider {
     width: 100%;
@@ -70,6 +80,8 @@
 }
 
 
+
+
 h3 {
     color: navy;
     margin-top: 1rem;
@@ -118,7 +130,57 @@ h5 {
     margin-bottom: 20px;
 }
 
+
 .popup {
     width: 100px !important;
     height: 100px !important;
 }
+
+
+
+/* About Page Styles */
+
+#aboutHeading h1, #contactHeading {
+    color:navy;
+    font-family: "Lora";
+    margin-bottom: 5rem;
+}
+
+#aboutHeading img {
+    width: 200px;
+
+}
+
+#aboutHeading {
+    text-align: center;
+}
+
+
+#aboutBox1, #aboutBox2 {
+    border: 2px solid navy;
+    border-radius: 10px;
+    padding: 2rem;
+   
+}
+
+
+
+#aboutBox2 img {
+    border-radius: 10px;
+}
+
+
+#aboutBox1 img {
+    width: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+
+#gameShopStyle {
+    width: 65% !important;
+}
+
+
+
+/* Contact Page Styles */
