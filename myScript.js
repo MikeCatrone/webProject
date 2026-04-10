@@ -4,6 +4,7 @@
 $(document).ready(() => {
 
 
+
     // Slider code
     const initSlider = () => {
 
@@ -18,9 +19,6 @@ $(document).ready(() => {
     }
 
 
-
-    
-   
     
 
     // Slider and welcome message html
@@ -46,7 +44,6 @@ $(document).ready(() => {
 
     $(() => {
 
-        console.log("Initial Load");
 
 
         // Axios Call
@@ -58,8 +55,6 @@ $(document).ready(() => {
 
 
         
-
-
         //Adds skeleton
         $("#myMain").append(`
 
@@ -81,7 +76,7 @@ $(document).ready(() => {
 
    
 
-        // data
+        // data populate. creates 6 product cards
         $.each(response.data, (index, el) => {
 
         $("#insertProduct").append(`
@@ -259,6 +254,7 @@ $(document).ready(() => {
 
     })
 
+    
 
 
     // Home Button handler
@@ -325,15 +321,138 @@ $(document).ready(() => {
 
 
 
+  
     // Contact Button handler
     $("#contact").on('click', () => {
 
+       
+
         $("#homeBanner").css("display", "none");
         $("#pageContent").html(`
-            <h1 id="contactHeading">Contact</h1>
+
+            
+            <h1 id="contactHeading">Contact Us</h1>
+            <h5>We would love to hear from you! Drop us a message and tell us how we are doing.
+            We are always looking for feedback from our customer to help better grow the business to help
+            our gaming community.</h5>
+
+            <form method="post" action="#" id="form1">
+
+                <label class="form-label mt-3" for="emailField">E-Mail:</label>
+                <span class="errors" id="field1Error">*required</span>
+                <input class="form-control" type="text" id="emailField" name="emailField" value="" placeholder="Enter Email">
+
+                <label class="form-label mt-3" for="subjectField">Subject:</label>
+                <span class="errors" id="field2Error">*required</span>
+                <input class="form-control" type="text" id="subjectField" name="subjectField" value="" placeholder="Enter Subject">
+
+                <label class="form-label mt-4" for="field6">Message:</label>
+                <span class="errors" id="field3Error">*required</span>
+                <textarea class="form-control" id="messageField" name="messageField" placeholder="Enter a message" rows="6" cols="40"></textarea>
+
+                <button type="submit" id="submit" class="btn btn-primary w-100"> Submit </button>
+
+            </form>
+            
+            
+
         `)
 
     })
+
+
+    
+
+
+      // Form submitting
+    $(document).on("submit", "#form1", function(event) {
+        
+        // Stop the page from reloading
+        event.preventDefault();
+
+
+        // Just for testing - check your console!
+
+        const contactField1 = $("#emailField").val();
+        const contactField2 = $("#subjectField").val();
+        const contactField3 = $("#messageField").val();
+
+        console.log("Email: " + contactField1);
+        console.log("Subject: " + contactField2);
+        console.log("Message: " + contactField3);
+
+
+        // Error Detection
+        let errors = 0;
+
+
+       
+
+        // Adds error message 
+        if(contactField1.trim().length === 0) {
+            errors = 1;
+            $("#field1Error").css("display", "inline-block");
+        } 
+
+       
+        if(contactField2.trim().length === 0) {
+            errors = 2;
+            $("#field2Error").css("display", "inline-block");
+        } 
+
+
+        if(contactField3.trim().length === 0) {
+            errors = 3;
+            $("#field3Error").css("display", "inline-block");
+        } 
+
+
+    
+        // Removes error message
+        $(document).on("input", "#emailField, #subjectField", function() {
+            $("#field1Error").hide();
+            
+        });
+
+
+        $(document).on("input", "#subjectField", function() {
+            $("#field2Error").hide();
+            
+        });
+
+
+        $(document).on("input", "#messageField", function() {
+            $("#field3Error").hide();
+            
+        });
+                
+        
+        if(errors == 0) {
+
+            // Create form data
+            const formData = new FormData();
+
+            // email, subject and message
+            formData.set('field1', contactField1); 
+            formData.set('field2', contactField2); 
+            formData.set('field3', contactField3);
+
+           axios.post("send3.php", formData)
+            .then(response => {
+
+                console.log(response.data);
+
+                
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+
+
+        }
+        
+        
+    });
 
 
    
