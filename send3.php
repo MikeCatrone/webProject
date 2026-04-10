@@ -18,6 +18,8 @@
     
     );
 
+    // output
     $output = json_encode($response);
     echo $output;
+
 ?>

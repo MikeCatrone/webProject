@@ -364,15 +364,15 @@ $(document).ready(() => {
     
 
 
-      // Form submitting
+      // -------- Form Submitting ------- //
+
     $(document).on("submit", "#form1", function(event) {
         
         // Stop the page from reloading
         event.preventDefault();
 
 
-        // Just for testing - check your console!
-
+        
         const contactField1 = $("#emailField").val();
         const contactField2 = $("#subjectField").val();
         const contactField3 = $("#messageField").val();
@@ -408,8 +408,8 @@ $(document).ready(() => {
 
 
     
-        // Removes error message
-        $(document).on("input", "#emailField, #subjectField", function() {
+        // Removes error messages when text is detected in an input
+        $(document).on("input", "#emailField", function() {
             $("#field1Error").hide();
             
         });
@@ -427,6 +427,9 @@ $(document).ready(() => {
         });
                 
         
+
+        // Form Submits to a PHP file //
+
         if(errors == 0) {
 
             // Create form data
@@ -442,12 +445,10 @@ $(document).ready(() => {
 
                 console.log(response.data);
 
-                
             })
             .catch(error => {
                 console.error("Error:", error);
             });
-
 
         }
         
